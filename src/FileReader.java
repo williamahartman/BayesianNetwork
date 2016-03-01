@@ -1,4 +1,5 @@
 import java.io.FileInputStream;
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.IntStream;
 
@@ -7,8 +8,8 @@ import java.util.stream.IntStream;
  */
 public class FileReader {
 
-    public static Map<String, Node> read(String fn){
-        Map<String, Node> net = new HashMap<>();
+    public static Map<String, Node> readNetwork(String fn){
+        Map<String, Node> net = new TreeMap<>();
         Scanner sc = null;
         try {
             sc = new Scanner(new FileInputStream(fn));
@@ -54,4 +55,45 @@ public class FileReader {
         return net;
     }
 
+    public static void readVariables(String filename, Map<String, Node> network) {
+        Map<String, Node> net = new TreeMap<>();
+        Scanner sc = null;
+        try {
+            sc = new Scanner(new FileInputStream(filename));
+        } catch (Exception e){
+            e.printStackTrace();
+            return;
+        }
+
+        if(sc.hasNextLine()) {
+            String[] variableTypes = sc.nextLine().split(",");
+            List<Node> nodeList = new ArrayList<>(network.values());
+
+            System.out.println(Arrays.toString(variableTypes));
+
+            if(variableTypes.length != nodeList.size()) {
+                throw new RuntimeException("The given list cannot apply to the network");
+            }
+
+            for(int i = 0; i < variableTypes.length; i++) {
+                switch (variableTypes[i]) {
+                    case "t":
+                        nodeList.get(i).setVariableInfo(Node.EVIDENCE_TRUE);
+                        break;
+
+                    case "f":
+                        nodeList.get(i).setVariableInfo(Node.EVIDENCE_FALSE);
+                        break;
+
+                    case "-":
+                        nodeList.get(i).setVariableInfo(Node.QUERY);
+                        break;
+
+                    case "?":
+                        nodeList.get(i).setVariableInfo(Node.NIETHER);
+                        break;
+                }
+            }
+        }
+    }
 }
