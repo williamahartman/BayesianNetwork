@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by will on 2/29/16.
@@ -18,8 +19,14 @@ public class Node {
     private double[] cpts;
     private int variableInfo;
 
+    private boolean sampledValue = false;
+
     public Node(String name) {
         this.name = name;
+    }
+
+    public boolean getSampledValue(){
+        return sampledValue;
     }
 
     public void addParent(Node parent){
@@ -47,6 +54,7 @@ public class Node {
     }
 
     public double getProbabilityGivenParents(List<Node> trueParents) {
+
         int index = 0;
 
         for(Node n: trueParents) {
@@ -56,6 +64,16 @@ public class Node {
         }
 
         return cpts[index];
+    }
+
+    public boolean priorSample(){
+        if(parents.isEmpty()){
+            return sampledValue = Math.random() < cpts[0];
+        } else {
+            parents.forEach(p -> p.priorSample());
+            List<Node> given = parents.stream().filter(p -> p.getSampledValue()).collect(Collectors.toList());
+            return sampledValue = Math.random() < getProbabilityGivenParents(given);
+        }
     }
 
     @Override

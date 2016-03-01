@@ -8,8 +8,8 @@ import java.util.stream.IntStream;
  */
 public class FileReader {
 
-    public static Map<String, Node> readNetwork(String fn){
-        Map<String, Node> net = new TreeMap<>();
+    public static BayesianNet readNetwork(String fn){
+        BayesianNet net = new BayesianNet();
         Scanner sc = null;
         try {
             sc = new Scanner(new FileInputStream(fn));
@@ -55,14 +55,14 @@ public class FileReader {
         return net;
     }
 
-    public static void readVariables(String filename, Map<String, Node> network) {
-        Map<String, Node> net = new TreeMap<>();
+    public static Node readVariables(String filename, BayesianNet network) {
+        Node query = null;
         Scanner sc = null;
         try {
             sc = new Scanner(new FileInputStream(filename));
         } catch (Exception e){
             e.printStackTrace();
-            return;
+            return null;
         }
 
         if(sc.hasNextLine()) {
@@ -87,6 +87,7 @@ public class FileReader {
 
                     case "-":
                         nodeList.get(i).setVariableInfo(Node.QUERY);
+                        query = nodeList.get(i);
                         break;
 
                     case "?":
@@ -95,5 +96,6 @@ public class FileReader {
                 }
             }
         }
+        return query;
     }
 }

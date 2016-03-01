@@ -1,14 +1,7 @@
 import java.util.Map;
+import java.util.stream.IntStream;
 
 public class Main {
-
-    public static double rejectionSampling(Map<String, Node> network, int numSamples) {
-        return 0;
-    }
-
-    public static double likelihoodWeightingSampling(Map<String, Node> network, int numSamples) {
-        return 0;
-    }
 
     public static void main(String[] args) {
         int numSamples = -1;
@@ -24,10 +17,18 @@ public class Main {
             System.exit(-1);
         }
 
-        Map<String, Node> net = FileReader.readNetwork(args[0]);
-        FileReader.readVariables(args[1], net);
+        BayesianNet net = FileReader.readNetwork(args[0]);
+        Node query = FileReader.readVariables(args[1], net);
 
-        System.out.println("Rejection Sampling for " + numSamples + " samples: " + rejectionSampling(net, numSamples));
+        System.out.println("Rejection Sampling for " + numSamples + " samples: " + rejectionSample(net, query, numSamples));
         System.out.println("Likelihood Weighting Sampling for " + numSamples + " samples: " + likelihoodWeightingSampling(net, numSamples));
+    }
+
+    public static double rejectionSample(BayesianNet net, Node query,int samples){
+        return (double)IntStream.range(0, samples).filter(i -> query.priorSample()).count() / (double)samples;
+    }
+
+    public static double likelihoodWeightingSampling(BayesianNet network, int numSamples) {
+        return 0;
     }
 }
