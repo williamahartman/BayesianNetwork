@@ -48,10 +48,6 @@ public class FileReader {
 
         }
 
-        for(Node node:net.values()){
-            System.out.println(node.getString());
-        }
-
         return net;
     }
 
@@ -68,8 +64,6 @@ public class FileReader {
         if(sc.hasNextLine()) {
             String[] variableTypes = sc.nextLine().split(",");
             List<Node> nodeList = new ArrayList<>(network.values());
-
-            System.out.println(Arrays.toString(variableTypes));
 
             if(variableTypes.length != nodeList.size()) {
                 throw new RuntimeException("The given list cannot apply to the network");
