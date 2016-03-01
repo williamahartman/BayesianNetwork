@@ -76,6 +76,16 @@ public class Node {
         }
     }
 
+    public boolean weightedSample(){
+        if(variableInfo == EVIDENCE_TRUE) {
+            return sampledValue = true;
+        } else if(variableInfo == EVIDENCE_FALSE) {
+            return sampledValue = false;
+        }
+
+        return priorSample();
+    }
+
     @Override
     public String toString() {
         return name;
