@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /*
-CS4341 - Artificial Intelligence - WPI - Project 5
+CS4341 - Artificial Intelligence - WPI - Project 6
 Akshay Thejaswi
 William Hartman
  */
