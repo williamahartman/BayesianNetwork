@@ -24,6 +24,37 @@ public class Main {
         System.out.println("Likelihood Weighting Sampling for " + numSamples + " samples: " + likelihoodWeightingSampling(query, numSamples));
     }
 
+
+    /**
+     * Testing main
+     * @param args
+     */
+    /*
+    public static void main(String[] args){
+        final int numSamples = Integer.parseInt(args[2]);
+        BayesianNet net = FileReader.readNetwork(args[0]);
+        Node query = FileReader.readVariables(args[1], net);
+
+        for(int i = 0; i < 10; i++){
+            System.out.print(rejectionSample(query, 50)+" ");
+            for(int n = 200; n <= 1000; n+= 200){
+                System.out.print(rejectionSample(query, n) + " ");
+            }
+            System.out.println();
+        }
+
+        System.out.println();
+
+        for(int i = 0; i < 10; i++){
+
+            System.out.print(likelihoodWeightingSampling(query, 50)+ " ");
+            for(int n = 200; n <= 1000; n+= 200){
+                System.out.print(likelihoodWeightingSampling(query, n) + " ");
+            }
+            System.out.println();
+        }
+    }*/
+
     public static double rejectionSample(Node query, int numSamples){
         return sample(numSamples, i -> query.priorSample());
     }
