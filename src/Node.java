@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,7 +10,6 @@ public class Node {
     public static final int EVIDENCE_TRUE = 1;
     public static final int QUERY = 2;
     public static final int NIETHER = 3;
-
 
     private String name;
     private List<Node> parents = new ArrayList<>();
@@ -39,14 +37,6 @@ public class Node {
 
     public void setTable(double[] cpt){
         cpts = cpt;
-    }
-
-    public void addNextNode(Node n) {
-        children.add(n);
-    }
-
-    public int getVariableInfo() {
-        return variableInfo;
     }
 
     public void setVariableInfo(int variableInfo) {
@@ -89,9 +79,5 @@ public class Node {
     @Override
     public String toString() {
         return name;
-    }
-
-    public String getString(){
-        return String.format("%s: %s %s", name, parents.toString(), Arrays.toString(cpts));
     }
 }

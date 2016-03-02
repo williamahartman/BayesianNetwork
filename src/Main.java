@@ -25,9 +25,8 @@ public class Main {
     }
 
 
-    /**
+    /*
      * Testing main
-     * @param args
      */
     /*
     public static void main(String[] args){
