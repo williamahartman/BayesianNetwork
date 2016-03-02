@@ -1,10 +1,16 @@
 import java.io.FileInputStream;
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.IntStream;
 
+/*
+CS4341 - Artificial Intelligence - WPI - Project 5
+Akshay Thejaswi
+William Hartman
+ */
+
 /**
- * Created by Akshay on 2/29/2016.
+ * This class build and populates a bayesian network based on files conforming to the
+ * given spec.
  */
 public class FileReader {
 
@@ -85,7 +91,7 @@ public class FileReader {
                         break;
 
                     case "?":
-                        nodeList.get(i).setVariableInfo(Node.NIETHER);
+                        nodeList.get(i).setVariableInfo(Node.NEITHER);
                         break;
                 }
             }

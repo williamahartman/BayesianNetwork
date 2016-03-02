@@ -1,7 +1,9 @@
 import java.util.TreeMap;
 
-/**
- * Created by Akshay on 2/29/2016.
+/*
+CS4341 - Artificial Intelligence - WPI - Project 5
+Akshay Thejaswi
+William Hartman
  */
-public class BayesianNet extends TreeMap<String, Node> {
-}
+
+public class BayesianNet extends TreeMap<String, Node> {}

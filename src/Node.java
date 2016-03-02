@@ -2,14 +2,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/*
+CS4341 - Artificial Intelligence - WPI - Project 5
+Akshay Thejaswi
+William Hartman
+ */
+
 /**
- * Created by will on 2/29/16.
+ * This class represents a node in a bayesian network. It offers methods for creating
+ * the node, updating information about the node, and sampling the node.
  */
 public class Node {
     public static final int EVIDENCE_FALSE = 0;
     public static final int EVIDENCE_TRUE = 1;
     public static final int QUERY = 2;
-    public static final int NIETHER = 3;
+    public static final int NEITHER = 3;
 
     private String name;
     private List<Node> parents = new ArrayList<>();
